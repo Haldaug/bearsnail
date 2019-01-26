@@ -793,6 +793,22 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 19eaa4bfa8fc7a541a0d1abb5ce79b9e, type: 3}
     - {fileID: 8300000, guid: 3293e9e9125aa5b4ea0dea8a8e45acee, type: 3}
     - {fileID: 8300000, guid: 039be6bc108d53246ad0286ea3d7137c, type: 3}
+    volume: 0.3
+    pitch: 1
+    randomPitchFluctuation: 0.175
+    Loop: 0
+    sources: []
+  - name: bump
+    clips:
+    - {fileID: 8300000, guid: 9314b905d8843493e9f933d77d8a360e, type: 3}
+    - {fileID: 8300000, guid: efffc661c90224731b750fa1377f02bb, type: 3}
+    - {fileID: 8300000, guid: 49351645988b8410fb8a6ca6cc1eeef7, type: 3}
+    - {fileID: 8300000, guid: 61d11c30896ca4852a2921572d2a6069, type: 3}
+    - {fileID: 8300000, guid: 114b5965e60d94b24afe151b1bed1178, type: 3}
+    - {fileID: 8300000, guid: a8422009595a2485a9d3b0f836a3d5e5, type: 3}
+    - {fileID: 8300000, guid: eaca3b0d71c3b4aa8ba18b6a81aeb2b8, type: 3}
+    - {fileID: 8300000, guid: 039be6bc108d53246ad0286ea3d7137c, type: 3}
+    - {fileID: 8300000, guid: 6a28b307e4a4b44608fd0d8bb53c9cac, type: 3}
     volume: 5
     pitch: 1
     randomPitchFluctuation: 0
