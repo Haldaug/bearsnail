@@ -180,6 +180,7 @@ public class s_PlayerControls : MonoBehaviour
                         if (!part.name.Contains("Arm")) {
                             var joint = part.gameObject.AddComponent<HingeJoint2D>();
                             joint.anchor = old.anchor;
+                            joint.connectedAnchor = old.connectedAnchor;
                             joint.useLimits = old.useLimits;
                             joint.limits = old.limits;
                             joint.connectedBody = old.connectedBody;
