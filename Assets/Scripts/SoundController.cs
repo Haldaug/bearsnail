@@ -7,7 +7,7 @@ public class SoundController : MonoBehaviour
 
     // Components
     public Rigidbody2D shellRb2d;
-    private LayerMask groundMask;
+
     private AudioManager audioManager;
 
     // Variables
@@ -18,8 +18,6 @@ public class SoundController : MonoBehaviour
     void Start()
     {
         audioManager = GetComponent<AudioManager>();
-        groundMask = LayerMask.GetMask("Ground");
-
     }
 
     // Update is called once per frame
@@ -35,6 +33,7 @@ public class SoundController : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        Debug.Log(collision.collider.tag);
         if (collision.collider.tag == "Ground")
         {
             onGround = true;
