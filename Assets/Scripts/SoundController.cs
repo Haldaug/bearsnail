@@ -23,12 +23,20 @@ public class SoundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(shellRb2d.velocity.magnitude > 1 && onGround)
+        if(shellRb2d.velocity.magnitude > 1.5 && onGround)
         {
             print("sound");
             audioManager.Play("roll");
         }
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.relativeVelocity.magnitude > 2)
+        {
+            audioManager.Play("bump");
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
