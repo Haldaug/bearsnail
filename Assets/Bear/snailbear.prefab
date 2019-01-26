@@ -814,6 +814,14 @@ MonoBehaviour:
     randomPitchFluctuation: 0
     Loop: 0
     sources: []
+  - name: themesong
+    clips:
+    - {fileID: 8300000, guid: 64b0ad6db915441a48d16ca858a1cd84, type: 3}
+    volume: 5
+    pitch: 1
+    randomPitchFluctuation: 0
+    Loop: 1
+    sources: []
 --- !u!1 &1536223750727730465
 GameObject:
   m_ObjectHideFlags: 0
