@@ -6,7 +6,7 @@ public class CameraFollow : MonoBehaviour {
 
     public Transform target;
     public float speed = 8f;
-    public Vector3 offset = new Vector3(0f, -3.5f, -10f);
+    public Vector3 offset = new Vector3(0f, 1f, -10f);
 
     void FixedUpdate() {
         transform.position = Vector3.Lerp(
