@@ -9,6 +9,7 @@ public class s_PlayerControls : MonoBehaviour
     public float crawlSpeed;
     public float rollSpeed;
     public float jumpPower;
+    public float jumpDuration;
 
 
 
@@ -29,16 +30,21 @@ public class s_PlayerControls : MonoBehaviour
     public Collider2D shellCollider;
     public GameObject bearParent;
     public GameObject velocityPointer;
+    public Rigidbody2D jumper;
+    private Vector2 jumperPosition;
+    private SliderJoint2D jumperJoint;
 
     private List<Collider2D> bearParts = new List<Collider2D>();
 
     private void Start()
     {
+        jumperJoint = jumper.GetComponent<SliderJoint2D>();
         groundMask = LayerMask.GetMask("Ground");
         animator = GetComponent<Animator>();
         bearParts.AddRange(bearParent.GetComponentsInChildren<Collider2D>());
 
         playerMoveType = 1;
+        jumperPosition = jumper.transform.localPosition;
     }
 
 
@@ -78,14 +84,14 @@ public class s_PlayerControls : MonoBehaviour
 
             // CRAWLING
             case 1:
-
+                /*
                 if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
                 {
                     foreach (var part in bearParts)
                     {
                         part.GetComponent<HingeJoint2D>().enabled = true;
                     }
-                }
+                }*/
 
 
 
@@ -112,10 +118,20 @@ public class s_PlayerControls : MonoBehaviour
                         part.GetComponent<Rigidbody2D>().Sleep();
                     }
 
-                    break;
+                    
                 }
 
-                
+                /*
+                if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
+                {
+
+                    foreach (var part in bearParts)
+                    {
+                        part.GetComponent<Collider2D>().enabled = true;
+                    }
+                }
+                */
+
                 /*
 
                     var setRotationEuler = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(transform.right, rb2d.velocity.normalized), 0.5f).ToEuler();
@@ -154,15 +170,41 @@ public class s_PlayerControls : MonoBehaviour
 
                     foreach (var part in bearParts)
                     {
+                        part.GetComponent<Collider2D>().enabled = true;
                         part.GetComponent<Rigidbody2D>().isKinematic = false;
                         part.GetComponent<Rigidbody2D>().WakeUp();
-                        part.GetComponent<Collider2D>().enabled = true;
+                        
                         part.GetComponent<HingeJoint2D>().enabled = true;
                     }
+                    print("Exiting shell");
+
+                    jumpDuration = 5;
+                    StartCoroutine(ExitingTimer());
+
                 }
 
                 break;
         }
+
+
+        if(jumpDuration > 0)
+        {
+            print("jumping");
+
+            jumperJoint.useLimits = false;
+            jumpDuration -= 1;
+            jumperJoint.GetComponent<Rigidbody2D>().mass = 1;
+        } else
+        {
+            jumperJoint.useLimits = true;
+            jumperJoint.GetComponent<Rigidbody2D>().mass = 0;
+        }
+
+        if (jumpDuration == 1)
+        {
+
+        }
+
     }
 
 
@@ -181,6 +223,16 @@ public class s_PlayerControls : MonoBehaviour
         if (collision.collider.tag == "Ground")
         {
             onGround = false;
+        }
+    }
+
+
+    IEnumerator ExitingTimer()
+    {
+        yield return new WaitForSeconds(3);
+        foreach (var part in bearParts)
+        {
+            part.GetComponent<Collider2D>().enabled = true;
         }
     }
 }
