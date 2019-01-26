@@ -106,7 +106,7 @@ public class s_PlayerControls : MonoBehaviour
 
                     foreach(var part in bearParts)
                     {
-                        //part.GetComponent<Rigidbody2D>().isKinematic = false;
+                        part.GetComponent<Rigidbody2D>().isKinematic = true;
                         part.GetComponent<Collider2D>().enabled = false;
                         part.GetComponent<HingeJoint2D>().enabled = false;
                         part.GetComponent<Rigidbody2D>().Sleep();
@@ -154,8 +154,10 @@ public class s_PlayerControls : MonoBehaviour
 
                     foreach (var part in bearParts)
                     {
+                        part.GetComponent<Rigidbody2D>().isKinematic = false;
                         part.GetComponent<Rigidbody2D>().WakeUp();
                         part.GetComponent<Collider2D>().enabled = true;
+                        part.GetComponent<HingeJoint2D>().enabled = true;
                     }
                 }
 
