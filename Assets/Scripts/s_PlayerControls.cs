@@ -175,6 +175,44 @@ public class s_PlayerControls : MonoBehaviour
                         part.GetComponent<Rigidbody2D>().WakeUp();
                         
                         part.GetComponent<HingeJoint2D>().enabled = true;
+                        var old = part.GetComponent<HingeJoint2D>();
+                    
+                        if (!part.name.Contains("Arm")) {
+                            var joint = part.gameObject.AddComponent<HingeJoint2D>();
+                            joint.anchor = old.anchor;
+                            joint.useLimits = old.useLimits;
+                            joint.limits = old.limits;
+                            joint.connectedBody = old.connectedBody;
+                            Destroy(old);
+                        }
+
+
+
+                        /*var oldMin = part.GetComponent<HingeJoint2D>().limits.min;
+                        //var oldMax = part.GetComponent<HingeJoint2D>().limits.max;
+                        //var refAngle = part.GetComponent<HingeJoint2D>().referenceAngle;
+                        //var jointAngle = part.GetComponent<HingeJoint2D>().jointAngle;
+
+                        //print(part.name + " oldMin: " + oldMin + "(" + WrapAngle(oldMin) + "). oldMax: " + oldMax + "(" + WrapAngle(oldMax) + "). refAngle: " + refAngle + ". jointAngle: " + jointAngle);
+
+                        //JointAngleLimits2D limits = new JointAngleLimits2D
+                        //{
+                        //    min = jointAngle + WrapAngle(oldMin),
+                        //    max = jointAngle + WrapAngle(oldMax)
+                        //};
+
+                        //part.GetComponent<HingeJoint2D>().limits = limits;*/
+
+
+
+                        //part.GetComponent<HingeJoint2D>().limits.max = jointAngle + oldMin;
+
+                        //print("JointAngle: " + part.GetComponent<HingeJoint2D>().jointAngle + ". wrap: " + WrapAngle(part.GetComponent<HingeJoint2D>().jointAngle));
+                        //print("ReferenceAngle: " + part.GetComponent<HingeJoint2D>().referenceAngle);
+                        //print("euler: " + part.transform.eulerAngles.z);
+                        //part.transform.eulerAngles = new Vector3(part.transform.eulerAngles.x, part.transform.eulerAngles.y, part.transform.eulerAngles.z);
+                        //.RotateAround(part.transform.parent.position, part.transform.eulerAngles.z);
+                        //part.GetComponent<HingeJoint2D>().jointAngle = WrapAngle(part.GetComponent<HingeJoint2D>().jointAngle);
                     }
                     print("Exiting shell");
 
@@ -233,6 +271,26 @@ public class s_PlayerControls : MonoBehaviour
         foreach (var part in bearParts)
         {
             part.GetComponent<Collider2D>().enabled = true;
+        }
+    }
+
+    private static float WrapAngle(float angleInDegrees)
+    {
+        if (angleInDegrees >= 360f)
+        {
+            return angleInDegrees - (360f * (int)(angleInDegrees / 360f));
+        }
+        else if (angleInDegrees >= 0f)
+        {
+            return angleInDegrees;
+        }
+        else
+        {
+            float f = angleInDegrees / -360f;
+            int i = (int)f;
+            if (f != i)
+                ++i;
+            return angleInDegrees + (360f * i);
         }
     }
 }
