@@ -495,6 +495,8 @@ GameObject:
   - component: {fileID: 1536223750707799221}
   - component: {fileID: 1536223750707799220}
   - component: {fileID: 999187215}
+  - component: {fileID: 1204223461}
+  - component: {fileID: 1204223463}
   m_Layer: 10
   m_Name: Shell
   m_TagString: Untagged
@@ -760,6 +762,42 @@ CircleCollider2D:
   m_Offset: {x: 0.05, y: -0.05}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!114 &1204223461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536223750707799222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d040b043b036fa4d9d09a86607e480a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shellRb2d: {fileID: 1536223750707799216}
+--- !u!114 &1204223463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536223750707799222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6fe9b886ea1b8e4d940c5ef468d7d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: roll
+    clips:
+    - {fileID: 8300000, guid: 19eaa4bfa8fc7a541a0d1abb5ce79b9e, type: 3}
+    - {fileID: 8300000, guid: 3293e9e9125aa5b4ea0dea8a8e45acee, type: 3}
+    - {fileID: 8300000, guid: 039be6bc108d53246ad0286ea3d7137c, type: 3}
+    volume: 5
+    pitch: 1
+    randomPitchFluctuation: 0
+    Loop: 0
+    sources: []
 --- !u!1 &1536223750727730465
 GameObject:
   m_ObjectHideFlags: 0
