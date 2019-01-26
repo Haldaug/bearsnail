@@ -159,7 +159,7 @@ HingeJoint2D:
   m_ConnectedRigidBody: {fileID: 223774636}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0.06, y: 0}
   m_ConnectedAnchor: {x: -0.8534169, y: -0.0044789314}
   m_UseMotor: 0
@@ -336,7 +336,7 @@ HingeJoint2D:
   m_ConnectedRigidBody: {fileID: 561727760}
   m_BreakForce: Infinity
   m_BreakTorque: 50
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: -0.03139005, y: 0.042473577}
   m_ConnectedAnchor: {x: 0.00470075, y: -0.03988258}
   m_UseMotor: 0
@@ -514,7 +514,7 @@ HingeJoint2D:
   m_ConnectedRigidBody: {fileID: 2136462880}
   m_BreakForce: Infinity
   m_BreakTorque: 50
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: -0.042718597, y: -0.008008089}
   m_ConnectedAnchor: {x: 0.18828137, y: -0.04600803}
   m_UseMotor: 0
@@ -749,7 +749,7 @@ HingeJoint2D:
   m_ConnectedRigidBody: {fileID: 223774636}
   m_BreakForce: Infinity
   m_BreakTorque: 50
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0.01113341, y: 0.044766854}
   m_ConnectedAnchor: {x: 0.045420486, y: -0.009381373}
   m_UseMotor: 0
@@ -1166,7 +1166,7 @@ HingeJoint2D:
   m_ConnectedRigidBody: {fileID: 223774636}
   m_BreakForce: Infinity
   m_BreakTorque: 50
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: -0.058638256, y: -0.00082155585}
   m_ConnectedAnchor: {x: 0.09636179, y: 0.022178331}
   m_UseMotor: 0
@@ -1307,7 +1307,7 @@ HingeJoint2D:
   m_ConnectedRigidBody: {fileID: 1100565714}
   m_BreakForce: Infinity
   m_BreakTorque: 50
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0.06, y: 0}
   m_ConnectedAnchor: {x: -0.20399992, y: -0.034999847}
   m_UseMotor: 0
@@ -1455,11 +1455,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1872159969}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 995a851fb65a4674a901fba9df3c9f37, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a6eb10646054b140ae2b8255d28431f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   crawlSpeed: 2
-  rollSpeed: 4
+  rollSpeed: 5
   jumpPower: 5
   playerMoveType: 1
   horizontalKeys: 0
@@ -1564,7 +1564,7 @@ HingeJoint2D:
   m_ConnectedRigidBody: {fileID: 223774636}
   m_BreakForce: Infinity
   m_BreakTorque: 50
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0.01113341, y: 0.044766854}
   m_ConnectedAnchor: {x: 0.045420486, y: -0.009381373}
   m_UseMotor: 0
@@ -1742,7 +1742,7 @@ HingeJoint2D:
   m_ConnectedRigidBody: {fileID: 2017866995}
   m_BreakForce: Infinity
   m_BreakTorque: 50
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: -0.03139005, y: 0.042473577}
   m_ConnectedAnchor: {x: 0.00470075, y: -0.03988258}
   m_UseMotor: 0
