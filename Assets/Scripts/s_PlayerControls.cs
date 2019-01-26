@@ -95,7 +95,7 @@ public class s_PlayerControls : MonoBehaviour
 
 
 
-                bearRb2d.velocity = (Vector3.right * crawlSpeed * horizontalKeys + Vector3.up * shellRb2d.velocity.y);
+                bearRb2d.AddForce(Vector3.right * crawlSpeed * horizontalKeys + Vector3.up * shellRb2d.velocity.y);
 
                 if (onGround == true && horizontalKeys != 0)
                 {
@@ -170,7 +170,7 @@ public class s_PlayerControls : MonoBehaviour
 
                     foreach (var part in bearParts)
                     {
-                        part.GetComponent<Collider2D>().enabled = true;
+                        part.GetComponent<Collider2D>().enabled = false;
                         part.GetComponent<Rigidbody2D>().isKinematic = false;
                         part.GetComponent<Rigidbody2D>().WakeUp();
                         
