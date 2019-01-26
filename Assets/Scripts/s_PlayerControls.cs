@@ -229,7 +229,7 @@ public class s_PlayerControls : MonoBehaviour
 
     IEnumerator ExitingTimer()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         foreach (var part in bearParts)
         {
             part.GetComponent<Collider2D>().enabled = true;
