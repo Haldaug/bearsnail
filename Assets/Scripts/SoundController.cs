@@ -28,11 +28,10 @@ public class SoundController : MonoBehaviour
 
         jumpKey = Input.GetButtonDown("Jump");
 
-        if (shellRb2d.velocity.magnitude > 1.5 && onGround)
-        {
-            print("sound");
-            audioManager.Play("roll");
-        }
+        //if (shellRb2d.velocity.magnitude > 1.5 && onGround)
+        //{
+        //    audioManager.Play("roll");
+        //}
 
         if(jumpKey)
         {
