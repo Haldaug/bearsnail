@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class s_PlayerControls : MonoBehaviour
 {
@@ -63,6 +64,12 @@ public class s_PlayerControls : MonoBehaviour
     void FixedUpdate()
     {
         var playerPosition = new Vector2(transform.position.x, transform.position.y);
+
+        if (shellRb2d.transform.position.y < -12)
+        {
+            Debug.Log("RESTART");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 
         /*
         // Ground Detection
