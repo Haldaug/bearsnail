@@ -42,7 +42,6 @@ public class SoundController : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log(collision.collider.tag);
         if (collision.collider.tag == "Ground")
         {
             onGround = true;
