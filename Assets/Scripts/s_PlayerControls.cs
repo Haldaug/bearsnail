@@ -13,6 +13,8 @@ public class s_PlayerControls : MonoBehaviour
     public float jumpDuration;
 
 
+    public float minYPosition;
+
 
     // Set variables
     public int playerMoveType = 1;
@@ -63,7 +65,7 @@ public class s_PlayerControls : MonoBehaviour
     {
         var playerPosition = new Vector2(transform.position.x, transform.position.y);
 
-        if (shellRb2d.transform.position.y < -12)
+        if (shellRb2d.transform.position.y < -minYPosition)
         {
             Debug.Log("RESTART");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -236,7 +238,7 @@ public class s_PlayerControls : MonoBehaviour
                     }
                     print("Exiting shell");
 
-                    jumpDuration = 5;
+                    jumpDuration = 3;
                     StartCoroutine(ExitingTimer());
 
                 }
@@ -259,10 +261,6 @@ public class s_PlayerControls : MonoBehaviour
             jumperJoint.GetComponent<Rigidbody2D>().mass = 0;
         }
 
-        if (jumpDuration == 1)
-        {
-
-        }
 
     }
 
