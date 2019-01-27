@@ -49,6 +49,22 @@ public class s_PlayerControls : MonoBehaviour
         animator = GetComponent<Animator>();
         bearParts.AddRange(bearParent.GetComponentsInChildren<Collider2D>());
         jumperPosition = jumper.transform.localPosition;
+
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        if (sceneName == "Intro")
+        {
+            playerMoveType = 2;
+            animator.Play("EnterShell");
+
+            foreach (var part in bearParts)
+            {
+                part.GetComponent<Rigidbody2D>().isKinematic = true;
+                part.GetComponent<Collider2D>().enabled = false;
+                part.GetComponent<HingeJoint2D>().enabled = false;
+                part.GetComponent<Rigidbody2D>().Sleep();
+            }
+        }
     }
 
 
