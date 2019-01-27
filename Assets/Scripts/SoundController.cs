@@ -12,22 +12,31 @@ public class SoundController : MonoBehaviour
 
     // Variables
     private bool onGround;
+    private bool jumpKey;
 
 
     // Start is called before the first frame update
     void Start()
     {
         audioManager = GetComponent<AudioManager>();
-        audioManager.Play("themesong");
+        //audioManager.Play("themesong");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(shellRb2d.velocity.magnitude > 1.5 && onGround)
+
+        jumpKey = Input.GetButtonDown("Jump");
+
+        if (shellRb2d.velocity.magnitude > 1.5 && onGround)
         {
             print("sound");
             audioManager.Play("roll");
+        }
+
+        if(jumpKey)
+        {
+            audioManager.Play("vocal");
         }
         
     }
