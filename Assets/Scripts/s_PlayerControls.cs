@@ -33,6 +33,7 @@ public class s_PlayerControls : MonoBehaviour
     public Rigidbody2D jumper;
     private Vector2 jumperPosition;
     private SliderJoint2D jumperJoint;
+    public GameObject bearPrefab;
 
     private List<Collider2D> bearParts = new List<Collider2D>();
 
@@ -93,8 +94,6 @@ public class s_PlayerControls : MonoBehaviour
                     }
                 }*/
 
-
-
                 bearRb2d.AddForce(Vector3.right * crawlSpeed * horizontalKeys + Vector3.up * shellRb2d.velocity.y);
 
                 if (onGround == true && horizontalKeys != 0)
@@ -121,24 +120,30 @@ public class s_PlayerControls : MonoBehaviour
                     
                 }
 
-                /*
-                if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
+                if (playerMoveType == 2 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
                 {
-
-                    foreach (var part in bearParts)
-                    {
-                        part.GetComponent<Collider2D>().enabled = true;
-                    }
+                    Destroy(bearParent);
+                    bearParts.Clear();
                 }
-                */
 
-                /*
+                    /*
+                    if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
+                    {
 
-                    var setRotationEuler = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(transform.right, rb2d.velocity.normalized), 0.5f).ToEuler();
+                        foreach (var part in bearParts)
+                        {
+                            part.GetComponent<Collider2D>().enabled = true;
+                        }
+                    }
+                    */
 
-                    transform.rotation = Quaternion.Euler(new Vector3(0, 0, setRotationEuler.z));
-                }*/
-                break;
+                    /*
+
+                        var setRotationEuler = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(transform.right, rb2d.velocity.normalized), 0.5f).ToEuler();
+
+                        transform.rotation = Quaternion.Euler(new Vector3(0, 0, setRotationEuler.z));
+                    }*/
+                    break;
 
 
             // ROLLING
@@ -163,58 +168,34 @@ public class s_PlayerControls : MonoBehaviour
                 if (jumpKey == true)//(shellRb2d.velocity.magnitude < 0.5f && onGround == true)
                 {
                     playerMoveType = 1;
-                    animator.Play("ExitShell");
+                    //animator.Play("ExitShell");
+
+                    //bearParent = Instantiate(bearPrefab, shellRb2d.transform.position, shellRb2d.transform.rotation, shellRb2d.transform);
+                    //bearParent.transform.localScale = new Vector3(1,1,1);
+                    //bearRb2d = bearParent.transform.Find("Torso").GetComponent<Rigidbody2D>();
+                    //bearParent.transform.Find("Torso").GetComponent<HingeJoint2D>().connectedBody = shellRb2d;
+                    //bearParts.AddRange(bearParent.GetComponentsInChildren<Collider2D>());
 
 
+                    //foreach (var part in bearParts)
+                    //{
+                    //    part.GetComponent<Collider2D>().enabled = false;
+                    //    part.GetComponent<Rigidbody2D>().isKinematic = false;
+                    //    part.GetComponent<Rigidbody2D>().WakeUp();
 
+                    //    part.GetComponent<HingeJoint2D>().enabled = true;
+                    //    var old = part.GetComponent<HingeJoint2D>();
 
-                    foreach (var part in bearParts)
-                    {
-                        part.GetComponent<Collider2D>().enabled = false;
-                        part.GetComponent<Rigidbody2D>().isKinematic = false;
-                        part.GetComponent<Rigidbody2D>().WakeUp();
-                        
-                        part.GetComponent<HingeJoint2D>().enabled = true;
-                        var old = part.GetComponent<HingeJoint2D>();
-                    
-                        if (!part.name.Contains("Arm")) {
-                            var joint = part.gameObject.AddComponent<HingeJoint2D>();
-                            joint.anchor = old.anchor;
-                            joint.connectedAnchor = old.connectedAnchor;
-                            joint.useLimits = old.useLimits;
-                            joint.limits = old.limits;
-                            joint.connectedBody = old.connectedBody;
-                            Destroy(old);
-                        }
-
-
-
-                        /*var oldMin = part.GetComponent<HingeJoint2D>().limits.min;
-                        //var oldMax = part.GetComponent<HingeJoint2D>().limits.max;
-                        //var refAngle = part.GetComponent<HingeJoint2D>().referenceAngle;
-                        //var jointAngle = part.GetComponent<HingeJoint2D>().jointAngle;
-
-                        //print(part.name + " oldMin: " + oldMin + "(" + WrapAngle(oldMin) + "). oldMax: " + oldMax + "(" + WrapAngle(oldMax) + "). refAngle: " + refAngle + ". jointAngle: " + jointAngle);
-
-                        //JointAngleLimits2D limits = new JointAngleLimits2D
-                        //{
-                        //    min = jointAngle + WrapAngle(oldMin),
-                        //    max = jointAngle + WrapAngle(oldMax)
-                        //};
-
-                        //part.GetComponent<HingeJoint2D>().limits = limits;*/
-
-
-
-                        //part.GetComponent<HingeJoint2D>().limits.max = jointAngle + oldMin;
-
-                        //print("JointAngle: " + part.GetComponent<HingeJoint2D>().jointAngle + ". wrap: " + WrapAngle(part.GetComponent<HingeJoint2D>().jointAngle));
-                        //print("ReferenceAngle: " + part.GetComponent<HingeJoint2D>().referenceAngle);
-                        //print("euler: " + part.transform.eulerAngles.z);
-                        //part.transform.eulerAngles = new Vector3(part.transform.eulerAngles.x, part.transform.eulerAngles.y, part.transform.eulerAngles.z);
-                        //.RotateAround(part.transform.parent.position, part.transform.eulerAngles.z);
-                        //part.GetComponent<HingeJoint2D>().jointAngle = WrapAngle(part.GetComponent<HingeJoint2D>().jointAngle);
-                    }
+                    //    if (!part.name.Contains("Arm")) {
+                    //        var joint = part.gameObject.AddComponent<HingeJoint2D>();
+                    //        joint.anchor = old.anchor;
+                    //        joint.connectedAnchor = old.connectedAnchor;
+                    //        joint.useLimits = old.useLimits;
+                    //        joint.limits = old.limits;
+                    //        joint.connectedBody = old.connectedBody;
+                    //        Destroy(old);
+                    //    }
+                    //}
                     print("Exiting shell");
 
                     jumpDuration = 5;
@@ -268,11 +249,19 @@ public class s_PlayerControls : MonoBehaviour
 
     IEnumerator ExitingTimer()
     {
-        yield return new WaitForSeconds(1);
-        foreach (var part in bearParts)
-        {
-            part.GetComponent<Collider2D>().enabled = true;
-        }
+        yield return new WaitForSeconds(0.1f);
+        //foreach (var part in bearParts)
+        //{
+        //    part.GetComponent<Collider2D>().enabled = true;
+        //}
+        Destroy(bearParent);
+        bearParts.Clear();
+        bearParent = Instantiate(bearPrefab, shellRb2d.transform.position, shellRb2d.transform.rotation, shellRb2d.transform);
+        bearParent.transform.localScale = new Vector3(1, 1, 1);
+        bearRb2d = bearParent.transform.Find("Torso").GetComponent<Rigidbody2D>();
+        bearParent.transform.Find("Torso").GetComponent<HingeJoint2D>().connectedBody = shellRb2d;
+        bearParts.AddRange(bearParent.GetComponentsInChildren<Collider2D>());
+        //animator.Play("ExitShell", 0);
     }
 
     private static float WrapAngle(float angleInDegrees)

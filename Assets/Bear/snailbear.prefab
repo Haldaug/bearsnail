@@ -1070,6 +1070,8 @@ MonoBehaviour:
   bearParent: {fileID: 1536223750727730465}
   velocityPointer: {fileID: 0}
   jumper: {fileID: 1536223750619572838}
+  bearPrefab: {fileID: 6315688444714290819, guid: cb4549dba8ecf48a184a5c3fbc7f0e11,
+    type: 3}
 --- !u!95 &1536223751009876286
 Animator:
   serializedVersion: 3
