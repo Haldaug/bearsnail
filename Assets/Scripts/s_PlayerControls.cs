@@ -34,6 +34,9 @@ public class s_PlayerControls : MonoBehaviour
     private Vector2 jumperPosition;
     private SliderJoint2D jumperJoint;
 
+
+
+
     private List<Collider2D> bearParts = new List<Collider2D>();
 
     private void Start()
@@ -60,7 +63,7 @@ public class s_PlayerControls : MonoBehaviour
     void FixedUpdate()
     {
         var playerPosition = new Vector2(transform.position.x, transform.position.y);
-        
+
         /*
         // Ground Detection
         var groundHit = Physics2D.Raycast(transform.position, -Vector2.up, 1.9f, groundMask, 1, 1);
@@ -84,14 +87,24 @@ public class s_PlayerControls : MonoBehaviour
 
             // CRAWLING
             case 1:
-                /*
-                if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
+
+                if (horizontalKeys != 0)
                 {
+                    animator.Play("Crawling", 1);
+                    animator.SetFloat("crawlSpeed", horizontalKeys);
+
                     foreach (var part in bearParts)
                     {
-                        part.GetComponent<HingeJoint2D>().enabled = true;
+                        if (part.name.Contains("Torso"))
+                        {
+                            var rb2d = part.GetComponent<Rigidbody2D>();
+
+                            rb2d.AddForce(Vector2.up * 10);
+
+                            //part.transform.RotateAround(part.GetComponent<HingeJoint2D>().anchor, Vector2.Angle(transform.up, transform.right)/ 100);
+                        }
                     }
-                }*/
+                }
 
 
 
@@ -101,16 +114,16 @@ public class s_PlayerControls : MonoBehaviour
                 {
                     //transform.LookAt(Vector2.Lerp(transform.position, playerPosition + rb2d.velocity.normalized * 2, 0.5f), Vector3.up);
 
-                    
+
                 }
-                
+
                 // Entering shell
-                if(jumpKey == true)
+                if (jumpKey == true)
                 {
                     playerMoveType = 2;
                     animator.Play("EnterShell");
 
-                    foreach(var part in bearParts)
+                    foreach (var part in bearParts)
                     {
                         part.GetComponent<Rigidbody2D>().isKinematic = true;
                         part.GetComponent<Collider2D>().enabled = false;
@@ -118,7 +131,7 @@ public class s_PlayerControls : MonoBehaviour
                         part.GetComponent<Rigidbody2D>().Sleep();
                     }
 
-                    
+
                 }
 
                 /*
@@ -173,8 +186,48 @@ public class s_PlayerControls : MonoBehaviour
                         part.GetComponent<Collider2D>().enabled = false;
                         part.GetComponent<Rigidbody2D>().isKinematic = false;
                         part.GetComponent<Rigidbody2D>().WakeUp();
-                        
+
                         part.GetComponent<HingeJoint2D>().enabled = true;
+                        var old = part.GetComponent<HingeJoint2D>();
+
+                        if (!part.name.Contains("Arm"))
+                        {
+                            var joint = part.gameObject.AddComponent<HingeJoint2D>();
+                            joint.anchor = old.anchor;
+                            joint.connectedAnchor = old.connectedAnchor;
+                            joint.useLimits = old.useLimits;
+                            joint.limits = old.limits;
+                            joint.connectedBody = old.connectedBody;
+                            Destroy(old);
+                        }
+
+
+
+                        /*var oldMin = part.GetComponent<HingeJoint2D>().limits.min;
+                        //var oldMax = part.GetComponent<HingeJoint2D>().limits.max;
+                        //var refAngle = part.GetComponent<HingeJoint2D>().referenceAngle;
+                        //var jointAngle = part.GetComponent<HingeJoint2D>().jointAngle;
+
+                        //print(part.name + " oldMin: " + oldMin + "(" + WrapAngle(oldMin) + "). oldMax: " + oldMax + "(" + WrapAngle(oldMax) + "). refAngle: " + refAngle + ". jointAngle: " + jointAngle);
+
+                        //JointAngleLimits2D limits = new JointAngleLimits2D
+                        //{
+                        //    min = jointAngle + WrapAngle(oldMin),
+                        //    max = jointAngle + WrapAngle(oldMax)
+                        //};
+
+                        //part.GetComponent<HingeJoint2D>().limits = limits;*/
+
+
+
+                        //part.GetComponent<HingeJoint2D>().limits.max = jointAngle + oldMin;
+
+                        //print("JointAngle: " + part.GetComponent<HingeJoint2D>().jointAngle + ". wrap: " + WrapAngle(part.GetComponent<HingeJoint2D>().jointAngle));
+                        //print("ReferenceAngle: " + part.GetComponent<HingeJoint2D>().referenceAngle);
+                        //print("euler: " + part.transform.eulerAngles.z);
+                        //part.transform.eulerAngles = new Vector3(part.transform.eulerAngles.x, part.transform.eulerAngles.y, part.transform.eulerAngles.z);
+                        //.RotateAround(part.transform.parent.position, part.transform.eulerAngles.z);
+                        //part.GetComponent<HingeJoint2D>().jointAngle = WrapAngle(part.GetComponent<HingeJoint2D>().jointAngle);
                     }
                     print("Exiting shell");
 
@@ -187,14 +240,15 @@ public class s_PlayerControls : MonoBehaviour
         }
 
 
-        if(jumpDuration > 0)
+        if (jumpDuration > 0)
         {
             print("jumping");
 
             jumperJoint.useLimits = false;
             jumpDuration -= 1;
             jumperJoint.GetComponent<Rigidbody2D>().mass = 1;
-        } else
+        }
+        else
         {
             jumperJoint.useLimits = true;
             jumperJoint.GetComponent<Rigidbody2D>().mass = 0;
@@ -229,10 +283,30 @@ public class s_PlayerControls : MonoBehaviour
 
     IEnumerator ExitingTimer()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(0.3f);
         foreach (var part in bearParts)
         {
             part.GetComponent<Collider2D>().enabled = true;
+        }
+    }
+
+    private static float WrapAngle(float angleInDegrees)
+    {
+        if (angleInDegrees >= 360f)
+        {
+            return angleInDegrees - (360f * (int)(angleInDegrees / 360f));
+        }
+        else if (angleInDegrees >= 0f)
+        {
+            return angleInDegrees;
+        }
+        else
+        {
+            float f = angleInDegrees / -360f;
+            int i = (int)f;
+            if (f != i)
+                ++i;
+            return angleInDegrees + (360f * i);
         }
     }
 }
