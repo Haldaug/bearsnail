@@ -46,8 +46,6 @@ public class s_PlayerControls : MonoBehaviour
         groundMask = LayerMask.GetMask("Ground");
         animator = GetComponent<Animator>();
         bearParts.AddRange(bearParent.GetComponentsInChildren<Collider2D>());
-
-        playerMoveType = 1;
         jumperPosition = jumper.transform.localPosition;
     }
 

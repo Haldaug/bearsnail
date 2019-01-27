@@ -318,7 +318,7 @@ SliderJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0.08291265, y: -0.021361476}
   m_AutoConfigureAngle: 1
-  m_Angle: -179.92838
+  m_Angle: -179.92834
   m_UseMotor: 1
   m_Motor:
     m_MotorSpeed: 20
@@ -822,6 +822,20 @@ MonoBehaviour:
     randomPitchFluctuation: 0
     Loop: 1
     sources: []
+  - name: vocal
+    clips:
+    - {fileID: 8300000, guid: f7fdad8b9d5e59941b5a527e5c93b465, type: 3}
+    - {fileID: 8300000, guid: e650d56bd2f9a7d45a58bda22c145c36, type: 3}
+    - {fileID: 8300000, guid: 42c2c5815e7971d4e8bc3ee00b064763, type: 3}
+    - {fileID: 8300000, guid: 02d9cbec7b661ad44ac895cd8978b4ee, type: 3}
+    - {fileID: 8300000, guid: 0b9757e2aaf0d8649956aedd7306505f, type: 3}
+    - {fileID: 8300000, guid: c3f5a65a41cee6f4d869b1a1b05a9c58, type: 3}
+    - {fileID: 8300000, guid: aaa0bad8e977b634ebaf0452016302f5, type: 3}
+    volume: 5
+    pitch: 1
+    randomPitchFluctuation: 0.114
+    Loop: 0
+    sources: []
 --- !u!1 &1536223750727730465
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,8 +1084,6 @@ MonoBehaviour:
   bearParent: {fileID: 1536223750727730465}
   velocityPointer: {fileID: 0}
   jumper: {fileID: 1536223750619572838}
-  bearPrefab: {fileID: 6315688444714290819, guid: cb4549dba8ecf48a184a5c3fbc7f0e11,
-    type: 3}
 --- !u!95 &1536223751009876286
 Animator:
   serializedVersion: 3
