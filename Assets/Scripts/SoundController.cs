@@ -20,6 +20,13 @@ public class SoundController : MonoBehaviour
     void Start()
     {
         audioManager = GetComponent<AudioManager>();
+
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        if (sceneName == "Intro")
+        {
+            audioManager.Play("themesong");
+        }
     }
 
     // Update is called once per frame
